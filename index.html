@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+
+    <body>
+
+        <title>Prioritizer</title>
+
+        <header class="shadow bg-dark text-white p-4 mb-3">
+            <h1>Prioritizer</h1>
+        </header>
+
+        <div class="container">
+            <div id="main" class="card card-body">
+                <h2 class="title">Add Items</h2>
+                <form id="addForm">
+                    <textarea class="form-control" cols=100 rows="10" id="prioItems"></textarea>
+                    <hr>
+                    <input type="submit" class="btn btn-dark" value="Add Items">
+                </form>
+                <h2 class="title">Items</h2>
+                <ul id="items" class="list-group">
+                </ul>
+                <hr>
+                <form id="collectForm" class="form-inline mb-3">
+                    <input type="submit" class="btn btn-dark" value="Create Choices">
+                </form>
+                <ul id="choicesList" class="list-group">
+                </ul>
+                <button id="evaluationButton" class="btn btn-dark">Evaluation</button>
+                <ol id="evaluationList" class="list-group">
+                </ol>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="main.js"></script>
+</html>
