@@ -10,27 +10,45 @@
 
         <title>Prioritizer</title>
 
-        <header class="shadow bg-dark text-white p-4 mb-3">
-            <h1>Prioritizer</h1>
+        <header class="shadow bg-dark text-white p-1 mb-2">
+            <h1 class="p-1">Prioritizer</h1>
+            <p class="lead p-1">
+                This tool is supposed to guide you through the <strong>difficult</strong> process of prioritizing an item list by divding it into a series of binary decisions that are <em>easier</em> to make.
+            </p>
         </header>
 
         <div class="container">
             <div id="main" class="card card-body">
-                <h2 class="title">Add Items</h2>
+                <h2 class="title">1. Add Items</h2>
+                <div class="alert alert-primary" role="alert">
+                    Paste a list of items (one item per line) here and click on <em>Add Items</em> below to continue.
+                </div>
                 <form id="addForm">
                     <textarea class="form-control" cols=100 rows="10" id="prioItems"></textarea>
                     <hr>
                     <input type="submit" class="btn btn-dark" value="Add Items">
                 </form>
-                <h2 class="title">Items</h2>
+                <h2 class="title">2. Identified Items</h2>
+                <div class="alert alert-primary" role="alert">
+                    Here you can find all items that have been recognized by the tool.
+                </div>
                 <ul id="items" class="list-group">
                 </ul>
                 <hr>
+                <h2>3. Choices</h2>
+                <div class="alert alert-primary" role="alert">
+                    In order to start the priorization process click on <em>Create Choices</em> below.
+                </div>
                 <form id="collectForm" class="form-inline mb-3">
                     <input type="submit" class="btn btn-dark" value="Create Choices">
                 </form>
                 <ul id="choicesList" class="list-group">
                 </ul>
+                <hr>
+                <h2>4. Evaluation</h2>
+                <div class="alert alert-primary" role="alert">
+                    Having prioritized all items, you may now review the evaluation revealing a <strong>prioritized</strong> version of your initial item list by clicking on <em>Evaluation</em>.
+                </div>
                 <button id="evaluationButton" class="btn btn-dark">Evaluation</button>
                 <ol id="evaluationList" class="list-group">
                 </ol>
