@@ -20,3 +20,4 @@ DONE:
 Helpbox with advice on how to make a decision (first content, Bootstrap Affix not yet working)
 More text that guides user : 8
 come up with a better name than Prioritizer (Bubble?) -> Bubble -> Bubble Tea -> Boba -> Boba Fett
+integrated jQuery / Bootstrap JS
