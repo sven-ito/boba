@@ -11,9 +11,10 @@ server side coding : 0
 
 reduce number of buttons
 grey out buttons that can no yet be used
-come up with a better name than Prioritizer (Bubble?)
 text hint boxes should be hidden and only appear once the step can be done
+create Boba (Fett) favicon
 
 DONE:
 
 More text that guides user : 8
+come up with a better name than Prioritizer (Bubble?) -> Bubble -> Bubble Tea -> Boba -> Boba Fett
