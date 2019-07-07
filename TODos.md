@@ -1,6 +1,9 @@
 TODO:
 
-code refactoring : 11
+code refactoring: function Java doc comments 
+code refactoring: remove duplicate code
+code refactoring: turn methods into functions
+
 versioning : 10
 Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
 decision boxes with comment fields on why the decision was taken : 8
@@ -14,10 +17,14 @@ Data persistence (DOM Storage / Cookie / Client side) : 2
 progress bar : 2
 server side coding : 0
 introduce OOP
+show combination matrix
 
 DONE:
 
-Partial code refactoring
+code refactoring: for loops
+code refactoring: console debug output
+code refactoring: variable names
+code refactoring: comments + let/const
 Helpbox with advice on how to make a decision (first content, Bootstrap Affix not yet working)
 More text that guides user : 8
 come up with a better name than Prioritizer (Bubble?) -> Bubble -> Bubble Tea -> Boba -> Boba Fett

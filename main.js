@@ -22,68 +22,79 @@ EVAL_BUTTON.addEventListener('click', evaluatePrios);
 
 // ------------------------------------------------------------------------------
 
-//Add item
+/**
+ * Adds a new item to the item list.
+ * @param  {} newItem
+ */
 function addItem(newItem) {
 
-    // Get input value
-    //var newItem = document.getElementById('item').value;
-
-    // Create new li element
     let li = document.createElement('li');
-    // Add class
     li.className = 'list-group-item';
-    // Add text node with input value
     li.appendChild(document.createTextNode(newItem));
 
-    // Append li to list
     ITEM_LIST.appendChild(li);
 }
 
+/**
+ * Parses the lines in the text area into single items.
+ * @param  {} e
+ */
 function addItems(e) {
 
+    // Hack to circumvent form default behavior (redirecting to another page)
     e.preventDefault();
 
+    // Assumption: Lines / items are separated with new line character
     let lines = TEXT_AREA.value.split("\n");
 
-    for (let i = 0; i < lines.length; i++) {
-        addItem(lines[i]);
+    for (let line of lines) {
+        addItem(line);
     }
 
 }
 
+/**
+ * Creates and renders all the choices to pick for the prioritization process.
+ * @param  {} e
+ */
 function createChoices(e) {
 
+    // Hack to circumvent form default behavior (redirecting to another page)
     e.preventDefault();
 
     // Collect list items into an array / list
     for (let i = 0; i < ITEM_LIST.children.length; i++) {
         items[i] = ITEM_LIST.children[i].innerText;
     }
+
+    console.log("Recognized items are:");
     console.log(items);
 
     for (let i = 0; i < items.length; i++) {
         scoring[i] = 0;
     }
+
+    console.log("Scoring array set to 0:");
     console.log(scoring);
 
     //Create combinations
     for (let i = 0; i < items.length - 1; i++) {
 
-        console.log(items[i]);
+        console.log("Combining item ... "+items[i]);
 
         let currentSubList = items.slice(i + 1, items.length)
 
+        console.log("... with:");
         console.log(currentSubList);
         for (let j = 0; j < currentSubList.length; j++) {
 
-            //console.log([items[i], currentSubList[j]]);
-            //choices.push([items[i], currentSubList[j]]);
-
+            console.log("Resulting combination (indices):");
             console.log([i, i + 1 + j]);
             choices.push([i, i + 1 + j]);
         }
     }
 
+    console.log("All resulting choice combinations:");
     console.log(choices);
 
     for (let i = 0; i < choices.length; i++) {
@@ -96,15 +107,16 @@ function createChoices(e) {
         div.className = 'row';
 
         let indexOptionA = choices[i][0];
+        console.log("Option A:");
         console.log(choices[i][0]);
 
-        let div2 = document.createElement('div');
-        div2.className = 'col-sm';
-        let button2 = document.createElement('button');
-        button2.className = 'btn btn-primary';
-        button2.appendChild(document.createTextNode(items[indexOptionA]));
-        button2.dataset.indexOption = indexOptionA;
-        button2.addEventListener(
+        let divOptionA = document.createElement('div');
+        divOptionA.className = 'col-sm';
+        let buttonOptionA = document.createElement('button');
+        buttonOptionA.className = 'btn btn-primary';
+        buttonOptionA.appendChild(document.createTextNode(items[indexOptionA]));
+        buttonOptionA.dataset.indexOption = indexOptionA;
+        buttonOptionA.addEventListener(
             'click',
             function () {
                 console.log("Option A: " + this.dataset.indexOption);
@@ -120,19 +132,20 @@ function createChoices(e) {
             },
             false
         );
-        div2.appendChild(button2);
-        div.appendChild(div2);
+        divOptionA.appendChild(buttonOptionA);
+        div.appendChild(divOptionA);
 
         let indexOptionB = choices[i][1];
+        console.log("Option B:");
         console.log(choices[i][1]);
 
-        let div3 = document.createElement('div');
-        div3.className = 'col-sm';
-        let button3 = document.createElement('button');
-        button3.className = 'btn btn-info';
-        button3.appendChild(document.createTextNode(items[indexOptionB]));
-        button3.dataset.indexOption = indexOptionB;
-        button3.addEventListener(
+        let divOptionB = document.createElement('div');
+        divOptionB.className = 'col-sm';
+        let buttonOptionB = document.createElement('button');
+        buttonOptionB.className = 'btn btn-info';
+        buttonOptionB.appendChild(document.createTextNode(items[indexOptionB]));
+        buttonOptionB.dataset.indexOption = indexOptionB;
+        buttonOptionB.addEventListener(
             'click',
             function () {
                 console.log("Option B: " + this.dataset.indexOption);
@@ -148,8 +161,8 @@ function createChoices(e) {
             },
             false
         );
-        div3.appendChild(button3);
-        div.appendChild(div3);
+        divOptionB.appendChild(buttonOptionB);
+        div.appendChild(divOptionB);
 
         li.appendChild(div);
 
@@ -160,8 +173,12 @@ function createChoices(e) {
     }
 }
 
-// from https://stackoverflow.com/questions/3730510/javascript-sort-array-and-return-an-array-of-indicies-that-indicates-the-positi
-
+/**
+ * Sorts an array and additionally returns the indices relative to the original sort order.
+ * Modified to reverse sort.
+ * from https://stackoverflow.com/questions/3730510/javascript-sort-array-and-return-an-array-of-indicies-that-indicates-the-positi
+ * @param  {} toSort
+ */
 function sortWithIndeces(toSort) {
     for (let i = 0; i < toSort.length; i++) {
         toSort[i] = [toSort[i], i];
@@ -178,9 +195,15 @@ function sortWithIndeces(toSort) {
     return toSort;
 }
 
+/**
+ * Evaluates the choices return a newly prioritized item list
+ * @param  {} e
+ */
 function evaluatePrios(e) {
 
+    console.log("Scoring array (before sorting):");
     console.log(scoring);
+
     sortWithIndeces(scoring);
 
     for (let i = 0; i < scoring.length; i++) {
