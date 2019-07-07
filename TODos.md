@@ -3,6 +3,7 @@ TODO:
 code refactoring: function Java doc comments 
 code refactoring: remove duplicate code
 code refactoring: turn methods into functions
+code refactoring: separate GUI logic from data / business logic
 
 versioning : 10
 Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
