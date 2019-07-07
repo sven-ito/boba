@@ -9,7 +9,6 @@ versioning : 10
 Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
 decision boxes with comment fields on why the decision was taken : 8
 grey out buttons that can no yet be used : 8
-create Boba (Fett) favicon : 7
 undo buttons : 6
 reduce number of buttons : 6
 separate decision boxes with counter (e.g. "7/10") : 5
@@ -22,6 +21,7 @@ show combination matrix
 
 DONE:
 
+create Boba (Fett) favicon
 code refactoring: for loops
 code refactoring: console debug output
 code refactoring: variable names
