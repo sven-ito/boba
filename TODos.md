@@ -7,7 +7,6 @@ code refactoring: separate GUI logic from data / business logic
 
 versioning : 10
 Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
-decision boxes with comment fields on why the decision was taken : 8
 grey out buttons that can no yet be used : 8
 undo buttons : 6
 reduce number of buttons : 6
@@ -18,9 +17,11 @@ progress bar : 2
 server side coding : 0
 introduce OOP
 show combination matrix
+decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 
 DONE:
 
+decision boxes with comment fields on why the decision was taken (basic for printing)
 create Boba (Fett) favicon
 code refactoring: for loops
 code refactoring: console debug output

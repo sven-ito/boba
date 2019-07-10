@@ -164,6 +164,14 @@ function createChoices(e) {
         divOptionB.appendChild(buttonOptionB);
         div.appendChild(divOptionB);
 
+        let divOptionComment = document.createElement('div');
+        divOptionComment.className = 'col-sm';
+        let optionComment = document.createElement('input');
+        optionComment.type = 'text';
+        divOptionComment.appendChild(optionComment);
+
+        div.appendChild(divOptionComment);
+
         li.appendChild(div);
 
         //li.appendChild(document.createTextNode(items[choices[i][0]]+" vs "+items[choices[i][1]]));
