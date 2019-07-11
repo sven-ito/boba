@@ -7,7 +7,6 @@ code refactoring: separate GUI logic from data / business logic
 code class modularity -> separate file
 
 Data persistence (DOM Storage / Cookie / Client side) : 2
-undo buttons : 6
 JIRA Plugin
 consitency check for choices
 add Selenium tests
@@ -30,6 +29,7 @@ decision boxes with comment fields on why the decision was taken (advanced for s
 
 DONE:
 
+undo buttons (indirectly) : 6
 decision boxes with comment fields on why the decision was taken (basic for printing)
 create Boba (Fett) favicon
 code refactoring: for loops
