@@ -76,6 +76,8 @@ function addItem(newItem) {
  */
 function addItems(e) {
 
+    ITEM_LIST.innerHTML = "";
+
     // Hack to circumvent form default behavior (redirecting to another page)
     e.preventDefault();
 
@@ -88,6 +90,14 @@ function addItems(e) {
 
 }
 
+
+function resetScore() {
+
+    for (let i = 0; i < items.length; i++) {
+        scoring[i] = 0;
+    }
+}
+
 /**
  * Creates and renders all the choices to pick for the prioritization process.
  * @param  {} e
@@ -97,6 +107,8 @@ function createChoices(e) {
     // Hack to circumvent form default behavior (redirecting to another page)
     e.preventDefault();
 
+    CHOICES_LIST.innerHTML = '';
+
     // Collect list items into an array / list
     for (let i = 0; i < ITEM_LIST.children.length; i++) {
         items[i] = ITEM_LIST.children[i].innerText;
@@ -105,9 +117,7 @@ function createChoices(e) {
     console.log("Recognized items are:");
     console.log(items);
 
-    for (let i = 0; i < items.length; i++) {
-        scoring[i] = 0;
-    }
+    resetScore();
 
     console.log("Scoring array set to 0:");
     console.log(scoring);
@@ -269,6 +279,9 @@ function sortWithIndeces(toSort) {
  * @param  {} e
  */
 function evaluatePrios(e) {
+
+    resetScore();
+    EVAL_LIST.innerHTML = '';
 
     // Prepare / fill scoring array
 
