@@ -1,5 +1,36 @@
 // ------------------------------------------------------------------------------
 
+class Choice {
+
+    constructor() {
+        this.pickedOption = -1;
+        this.comment = "";
+    }
+
+    getComment() {
+        return this.comment;
+    }
+
+    setComment(comment) {
+
+        if (typeof comment === "string")
+            this.comment = comment;
+    }
+
+    getPickedOption() {
+        return this.pickedOption;
+    }
+
+    setPickedOption(pickedOption) {
+
+        if (typeof pickedOption === "number")
+            this.pickedOption = pickedOption;
+    }
+
+}
+
+// ------------------------------------------------------------------------------
+
 // All relevant GUI components
 const TEXT_AREA = document.getElementById('prioItems');
 const ITEM_LIST_FORM = document.getElementById('addForm');
@@ -80,7 +111,7 @@ function createChoices(e) {
     //Create combinations
     for (let i = 0; i < items.length - 1; i++) {
 
-        console.log("Combining item ... "+items[i]);
+        console.log("Combining item ... " + items[i]);
 
         let currentSubList = items.slice(i + 1, items.length)
 
@@ -90,14 +121,21 @@ function createChoices(e) {
 
             console.log("Resulting combination (indices):");
             console.log([i, i + 1 + j]);
-            choices.push([i, i + 1 + j]);
+            //choices.push([i, i + 1 + j]);
+
+            // Replaced by associative array with key = indices, e.g. "1-2" means item 1 vs. 2
+            let key = i+"-"+(i+1+j)
+            choices[key] = new Choice();
         }
     }
 
     console.log("All resulting choice combinations:");
     console.log(choices);
 
-    for (let i = 0; i < choices.length; i++) {
+    for (let key in choices) {
+
+        // Parse option item indices from key
+        let options = key.split('-');
 
         // Create new li element
         let li = document.createElement('li');
@@ -105,10 +143,11 @@ function createChoices(e) {
 
         let div = document.createElement('div');
         div.className = 'row';
+        div.id = 'choice_'+key;
 
-        let indexOptionA = choices[i][0];
+        let indexOptionA = options[0];
         console.log("Option A:");
-        console.log(choices[i][0]);
+        console.log(options[0]);
 
         let divOptionA = document.createElement('div');
         divOptionA.className = 'col-sm';
@@ -121,6 +160,9 @@ function createChoices(e) {
             function () {
                 console.log("Option A: " + this.dataset.indexOption);
                 scoring[this.dataset.indexOption]++;
+
+                let key = this.parentElement.parentElement.id.split('_')[1];
+                choices[key].setPickedOption(0);
 
                 let allButtons = this.parentElement.parentElement.getElementsByClassName('btn');
                 for (let i = 0; i < allButtons.length; i++) {
@@ -135,9 +177,9 @@ function createChoices(e) {
         divOptionA.appendChild(buttonOptionA);
         div.appendChild(divOptionA);
 
-        let indexOptionB = choices[i][1];
+        let indexOptionB = options[1];
         console.log("Option B:");
-        console.log(choices[i][1]);
+        console.log(options[1]);
 
         let divOptionB = document.createElement('div');
         divOptionB.className = 'col-sm';
@@ -150,6 +192,9 @@ function createChoices(e) {
             function () {
                 console.log("Option B: " + this.dataset.indexOption);
                 scoring[this.dataset.indexOption]++;
+
+                let key = this.parentElement.parentElement.id.split('_')[1];
+                choices[key].setPickedOption(1);
 
                 let allButtons = this.parentElement.parentElement.getElementsByClassName('btn');
                 for (let i = 0; i < allButtons.length; i++) {
@@ -164,10 +209,22 @@ function createChoices(e) {
         divOptionB.appendChild(buttonOptionB);
         div.appendChild(divOptionB);
 
+        // Comment Box:
+
         let divOptionComment = document.createElement('div');
         divOptionComment.className = 'col-sm';
         let optionComment = document.createElement('input');
         optionComment.type = 'text';
+        optionComment.addEventListener(
+            'blur',
+            function () {
+                
+                let key = this.parentElement.parentElement.id.split('_')[1];
+                choices[key].setComment(this.value);
+
+            },
+            false
+        );
         divOptionComment.appendChild(optionComment);
 
         div.appendChild(divOptionComment);

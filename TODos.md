@@ -4,6 +4,7 @@ code refactoring: function Java doc comments
 code refactoring: remove duplicate code
 code refactoring: turn methods into functions
 code refactoring: separate GUI logic from data / business logic
+code class modularity -> separate file
 
 Data persistence (DOM Storage / Cookie / Client side) : 2
 undo buttons : 6
