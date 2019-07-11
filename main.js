@@ -158,8 +158,8 @@ function createChoices(e) {
         buttonOptionA.addEventListener(
             'click',
             function () {
-                console.log("Option A: " + this.dataset.indexOption);
-                scoring[this.dataset.indexOption]++;
+                //console.log("Option A: " + this.dataset.indexOption);
+                //scoring[this.dataset.indexOption]++;
 
                 let key = this.parentElement.parentElement.id.split('_')[1];
                 choices[key].setPickedOption(0);
@@ -190,8 +190,8 @@ function createChoices(e) {
         buttonOptionB.addEventListener(
             'click',
             function () {
-                console.log("Option B: " + this.dataset.indexOption);
-                scoring[this.dataset.indexOption]++;
+                //console.log("Option B: " + this.dataset.indexOption);
+                //scoring[this.dataset.indexOption]++;
 
                 let key = this.parentElement.parentElement.id.split('_')[1];
                 choices[key].setPickedOption(1);
@@ -265,6 +265,15 @@ function sortWithIndeces(toSort) {
  * @param  {} e
  */
 function evaluatePrios(e) {
+
+    // Prepare / fill scoring array
+
+    for(key in choices) {
+
+        let indexPickedOption = choices[key].getPickedOption();
+        let actualItemIndex = key.split('-')[indexPickedOption];
+        scoring[actualItemIndex]++;
+    }
 
     console.log("Scoring array (before sorting):");
     console.log(scoring);
