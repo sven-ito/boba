@@ -166,7 +166,7 @@ function createChoices(e) {
 
                 let allButtons = this.parentElement.parentElement.getElementsByClassName('btn');
                 for (let i = 0; i < allButtons.length; i++) {
-                    allButtons[i].disabled = true;
+                    //allButtons[i].disabled = true;
                     allButtons[i].className = 'btn btn-dark';
                 }
 
@@ -198,7 +198,7 @@ function createChoices(e) {
 
                 let allButtons = this.parentElement.parentElement.getElementsByClassName('btn');
                 for (let i = 0; i < allButtons.length; i++) {
-                    allButtons[i].disabled = true;
+                    //allButtons[i].disabled = true;
                     allButtons[i].className = 'btn btn-dark';
                 }
 
