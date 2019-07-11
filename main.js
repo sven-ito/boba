@@ -2,7 +2,11 @@
 
 class Choice {
 
-    constructor() {
+    constructor(numberOfOptions = 2) {
+
+        if (typeof numberOfOptions === "number" && numberOfOptions > 0)
+            this.numberOfOptions = numberOfOptions;
+
         this.pickedOption = -1;
         this.comment = "";
     }
@@ -23,7 +27,7 @@ class Choice {
 
     setPickedOption(pickedOption) {
 
-        if (typeof pickedOption === "number")
+        if (typeof pickedOption === "number" && pickedOption >= 0 && pickedOption < this.numberOfOptions) 
             this.pickedOption = pickedOption;
     }
 
@@ -124,7 +128,7 @@ function createChoices(e) {
             //choices.push([i, i + 1 + j]);
 
             // Replaced by associative array with key = indices, e.g. "1-2" means item 1 vs. 2
-            let key = i+"-"+(i+1+j)
+            let key = i + "-" + (i + 1 + j)
             choices[key] = new Choice();
         }
     }
@@ -143,7 +147,7 @@ function createChoices(e) {
 
         let div = document.createElement('div');
         div.className = 'row';
-        div.id = 'choice_'+key;
+        div.id = 'choice_' + key;
 
         let indexOptionA = options[0];
         console.log("Option A:");
@@ -218,7 +222,7 @@ function createChoices(e) {
         optionComment.addEventListener(
             'blur',
             function () {
-                
+
                 let key = this.parentElement.parentElement.id.split('_')[1];
                 choices[key].setComment(this.value);
 
@@ -268,7 +272,7 @@ function evaluatePrios(e) {
 
     // Prepare / fill scoring array
 
-    for(key in choices) {
+    for (key in choices) {
 
         let indexPickedOption = choices[key].getPickedOption();
         let actualItemIndex = key.split('-')[indexPickedOption];
