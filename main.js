@@ -152,7 +152,7 @@ function createChoices(e) {
         let divOptionA = document.createElement('div');
         divOptionA.className = 'col-sm';
         let buttonOptionA = document.createElement('button');
-        buttonOptionA.className = 'btn btn-primary';
+        buttonOptionA.className = 'btn btn-dark';
         buttonOptionA.appendChild(document.createTextNode(items[indexOptionA]));
         buttonOptionA.dataset.indexOption = indexOptionA;
         buttonOptionA.addEventListener(
@@ -184,7 +184,7 @@ function createChoices(e) {
         let divOptionB = document.createElement('div');
         divOptionB.className = 'col-sm';
         let buttonOptionB = document.createElement('button');
-        buttonOptionB.className = 'btn btn-info';
+        buttonOptionB.className = 'btn btn-dark';
         buttonOptionB.appendChild(document.createTextNode(items[indexOptionB]));
         buttonOptionB.dataset.indexOption = indexOptionB;
         buttonOptionB.addEventListener(

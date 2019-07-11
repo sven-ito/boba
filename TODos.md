@@ -9,8 +9,9 @@ code class modularity -> separate file
 Data persistence (DOM Storage / Cookie / Client side) : 2
 undo buttons : 6
 JIRA Plugin
+consitency check for choices
+add Selenium tests
 
-consitency?
 --------------------
 
 versioning : 10
