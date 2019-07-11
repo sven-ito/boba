@@ -27,7 +27,7 @@ class Choice {
 
     setPickedOption(pickedOption) {
 
-        if (typeof pickedOption === "number" && pickedOption >= 0 && pickedOption < this.numberOfOptions) 
+        if (typeof pickedOption === "number" && pickedOption >= 0 && pickedOption < this.numberOfOptions)
             this.pickedOption = pickedOption;
     }
 
@@ -307,9 +307,36 @@ function evaluatePrios(e) {
         EVAL_LIST.appendChild(li);
 
     }
-
-
 }
+
+function storeChoices() {
+
+    let allKeys = [];
+
+    for (let key in choices) {
+        localStorage.setItem(key, JSON.stringify(choices[key]));
+        allKeys.push(key);
+    }
+
+    localStorage.setItem('all-choice-keys', JSON.stringify(allKeys));
+}
+
+function loadChoices() {
+
+    choices = [];
+
+    let allKeys = JSON.parse(localStorage.getItem('all-choice-keys'));
+
+    for (let key of allKeys) {
+
+        let tempChoice = JSON.parse(localStorage.getItem(key));
+        let choice = new Choice(tempChoice.numberOfOptions);
+        choice.setComment(tempChoice.comment);
+        choice.setPickedOption(tempChoice.pickedOption);
+        choices[key] = choice;
+    }
+}
+
 
 
 
