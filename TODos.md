@@ -5,14 +5,21 @@ code refactoring: remove duplicate code
 code refactoring: turn methods into functions
 code refactoring: separate GUI logic from data / business logic
 
+Data persistence (DOM Storage / Cookie / Client side) : 2
+undo buttons : 6
+JIRA Plugin
+
+consitency?
+--------------------
+
 versioning : 10
 Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
 grey out buttons that can no yet be used : 8
-undo buttons : 6
+
 reduce number of buttons : 6
 separate decision boxes with counter (e.g. "7/10") : 5
 text hint boxes should be hidden and only appear once the step can be done : 5
-Data persistence (DOM Storage / Cookie / Client side) : 2
+
 progress bar : 2
 server side coding : 0
 introduce OOP
