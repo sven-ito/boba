@@ -5,9 +5,9 @@ Boba PrioTool
 
 *some famous bounty hunter*
 
-This tool is supposed to guide you through the difficult process of prioritizing an item list by divding it into a series of binary decisions that are easier to make.
+This tool is supposed to guide you through the *difficult* process of **prioritizing an item list** by divding it into a series of **binary choices** that are *easier* to make.
 
-It was created as MVP client-side JavaScript web app in a very "MVP-Agile-hacky" way.
+It was created as client-side-only JavaScript web app in a **very** "MVP-Agile-hacky" way.
 However, the tool does what it is supposed to be doing, for now :-)
 
 Why Boba?
