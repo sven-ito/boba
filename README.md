@@ -20,6 +20,13 @@ Why Boba?
 * Apparently Boba is another name for the famous Asian beverage [bubble tea](https://en.wikipedia.org/wiki/Boba_tea).
 * Boba is also the first name of some badass bounty hunter from Star Wars, [Boba Fett](https://en.wikipedia.org/wiki/Boba_Fett), hence the logo.
 
+Testing
+-------
+
+Successfully tested on:
+
+>  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+
 Backlog
 -------
 
