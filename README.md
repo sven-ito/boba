@@ -7,7 +7,7 @@ Boba PrioTool
 
 This tool is supposed to guide you through the *difficult* process of **prioritizing an item list** by divding it into a series of **binary choices** that are *easier* to make.
 
-It was created as client-side-only JavaScript web app in a **very** "MVP-Agile-hacky" way.
+It was created as client-side-only JavaScript web app in a **very** "MVP-Agile-hacky" #DesktopFirst way.
 However, the tool does what it is supposed to be doing, for now :-)
 
 Why Boba?
@@ -34,25 +34,29 @@ Unordered list of ideas soon to be / already implemented:
 
 **TODO**:
 
+- mobile optimizations
+- mobile testing
+- turn it into an JIRA Plugin
+- add Selenium tests
+- error handling
+- consitency check for choices
+- allow predefined comments / prio reasons
+- allow multiple prio reasons per choice
 - code refactoring: function Java doc comments 
 - code refactoring: remove duplicate code
-
 - code class modularity -> separate file
-- JIRA Plugin
-- consitency check for choices
-- add Selenium tests
-- Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 8
-- grey out buttons that can no yet be used : 8
-- reduce number of buttons : 6
-- separate decision boxes with counter (e.g. "7/10") : 5
-- text hint boxes should be hidden and only appear once the step can be done : 5
-- progress bar : 2
-- server side coding : 0
+- Helpbox with advice on how to make a decision (left side, Bootstrap Affix?)
+- grey out buttons that can no yet be used
+- reduce number of buttons
+- separate decision boxes with counter (e.g. "7/10")
+- text hint boxes should be hidden and only appear once the step can be done
+- progress bar
+- server side coding
 - introduce OOP
-- decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 
 **DONE**:
 
+- decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 - show combination matrix
 - code refactoring: turn methods into functions
 - code refactoring: separate GUI logic from data / business logic
