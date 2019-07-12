@@ -44,6 +44,7 @@ const CHOICES_LIST = document.getElementById('choicesList');
 const EVAL_LIST = document.getElementById('evaluationList');
 const EVAL_BUTTON = document.getElementById('evaluationButton');
 const RESTORE_BUTTON = document.getElementById('restoreButton');
+const COMBINATION_MATRIX_SPACE = document.getElementById('combinationMatrixSpace');
 
 // All data structures for (processed) inputs - as global variables
 var items = [];
@@ -313,12 +314,14 @@ function evaluatePrios(e) {
         EVAL_LIST.appendChild(li);
 
     }
+
+    renderCombinationMatrix();
 }
 
 function restoreEverything() {
 
     if (isEverythingStored()) {
-        
+
         items = loadItems();
         choices = loadChoices();
 
@@ -384,6 +387,88 @@ function loadChoices() {
     }
 
     return choices;
+}
+
+function renderCombinationMatrix() {
+
+    COMBINATION_MATRIX_SPACE.innerHTML = '';
+
+    let table = document.createElement('table');
+    table.className = 'table';
+
+    let head = document.createElement('thead');
+    table.appendChild(head);
+
+    let row = document.createElement('tr');
+
+    let header = document.createElement('th');
+    header.scope = "col";
+    header.innerText = "#";
+    row.appendChild(header);
+
+    for (let i = 0; i < items.length; i++) {
+
+        let header = document.createElement('th');
+        header.scope = "col";
+        header.innerText = i;
+        row.appendChild(header);
+    }
+
+    head.appendChild(row);
+
+    let tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+
+    for (let i = 0; i < items.length; i++) {
+
+        let row = document.createElement('tr');
+
+        let header = document.createElement('th');
+        header.scope = "col";
+        header.innerText = i;
+        row.appendChild(header);
+
+        table.appendChild(row);
+
+        for (let j = 0; j < items.length; j++) {
+
+            let column = document.createElement('td');
+
+            if (choices[i + '-' + j] != undefined) {
+                if (choices[i + '-' + j].pickedOption == 0)
+                    column.innerText = i;
+                if (choices[i + '-' + j].pickedOption == 1)
+                    column.innerText = j;
+            }
+            else
+                column.bgColor = '#000000';
+
+            if (i == j)
+                column.bgColor = '#000000';
+
+            row.appendChild(column);
+        }
+    }
+
+    COMBINATION_MATRIX_SPACE.appendChild(table);
+
+    table = document.createElement('table');
+    table.className = 'table';
+
+    for (let i = 0; i < items.length; i++) {
+
+        row = document.createElement('tr');
+        column = document.createElement('td');
+        column.innerText = i;
+        row.appendChild(column);
+        column = document.createElement('td');
+        column.innerText = items[i];
+        row.appendChild(column);
+
+        table.appendChild(row);
+    }
+
+    COMBINATION_MATRIX_SPACE.appendChild(table);
 }
 
 function init() {

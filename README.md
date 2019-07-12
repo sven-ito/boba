@@ -29,8 +29,7 @@ Unordered list of ideas soon to be / already implemented:
 
 - code refactoring: function Java doc comments 
 - code refactoring: remove duplicate code
-- code refactoring: turn methods into functions
-- code refactoring: separate GUI logic from data / business logic
+
 - code class modularity -> separate file
 - JIRA Plugin
 - consitency check for choices
@@ -43,11 +42,13 @@ Unordered list of ideas soon to be / already implemented:
 - progress bar : 2
 - server side coding : 0
 - introduce OOP
-- show combination matrix
 - decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 
 **DONE**:
 
+- show combination matrix
+- code refactoring: turn methods into functions
+- code refactoring: separate GUI logic from data / business logic
 - Data persistence (DOM Storage / Cookie / Client side) : 2
 - class safety
 - versioning : 10
