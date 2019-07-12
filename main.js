@@ -43,16 +43,12 @@ const ITEM_LIST = document.getElementById('items');
 const CHOICES_LIST = document.getElementById('choicesList');
 const EVAL_LIST = document.getElementById('evaluationList');
 const EVAL_BUTTON = document.getElementById('evaluationButton');
+const RESTORE_BUTTON = document.getElementById('restoreButton');
 
 // All data structures for (processed) inputs - as global variables
 var items = [];
-var choices = [];
 var scoring = [];
-
-// Add event handlers
-ITEM_LIST_FORM.addEventListener('submit', addItems);
-CHOICES_FORM.addEventListener('submit', createChoices);
-EVAL_BUTTON.addEventListener('click', evaluatePrios);
+var lines = [];
 
 
 // ------------------------------------------------------------------------------
@@ -72,20 +68,18 @@ function addItem(newItem) {
 
 /**
  * Parses the lines in the text area into single items.
- * @param  {} e
  */
-function addItems(e) {
+function addItems(lines) {
 
     ITEM_LIST.innerHTML = "";
 
-    // Hack to circumvent form default behavior (redirecting to another page)
-    e.preventDefault();
-
-    // Assumption: Lines / items are separated with new line character
-    let lines = TEXT_AREA.value.split("\n");
-
     for (let line of lines) {
         addItem(line);
+    }
+
+    // Collect list items into an array / list
+    for (let i = 0; i < ITEM_LIST.children.length; i++) {
+        items[i] = ITEM_LIST.children[i].innerText;
     }
 
 }
@@ -99,28 +93,11 @@ function resetScore() {
 }
 
 /**
- * Creates and renders all the choices to pick for the prioritization process.
- * @param  {} e
+ * Creates all the choices to pick for the prioritization process.
  */
-function createChoices(e) {
+function createChoices(items) {
 
-    // Hack to circumvent form default behavior (redirecting to another page)
-    e.preventDefault();
-
-    CHOICES_LIST.innerHTML = '';
-
-    // Collect list items into an array / list
-    for (let i = 0; i < ITEM_LIST.children.length; i++) {
-        items[i] = ITEM_LIST.children[i].innerText;
-    }
-
-    console.log("Recognized items are:");
-    console.log(items);
-
-    resetScore();
-
-    console.log("Scoring array set to 0:");
-    console.log(scoring);
+    choices = [];
 
     //Create combinations
     for (let i = 0; i < items.length - 1; i++) {
@@ -135,7 +112,6 @@ function createChoices(e) {
 
             console.log("Resulting combination (indices):");
             console.log([i, i + 1 + j]);
-            //choices.push([i, i + 1 + j]);
 
             // Replaced by associative array with key = indices, e.g. "1-2" means item 1 vs. 2
             let key = i + "-" + (i + 1 + j)
@@ -145,6 +121,17 @@ function createChoices(e) {
 
     console.log("All resulting choice combinations:");
     console.log(choices);
+
+    return choices;
+}
+
+
+/**
+ * Creates and renders all the choices to pick for the prioritization process.
+ */
+function renderChoices(choices) {
+
+    CHOICES_LIST.innerHTML = '';
 
     for (let key in choices) {
 
@@ -166,7 +153,12 @@ function createChoices(e) {
         let divOptionA = document.createElement('div');
         divOptionA.className = 'col-sm';
         let buttonOptionA = document.createElement('button');
-        buttonOptionA.className = 'btn btn-dark';
+
+        if (choices[key].getPickedOption() == 0)
+            buttonOptionA.className = 'btn btn-success';
+        else
+            buttonOptionA.className = 'btn btn-dark';
+
         buttonOptionA.appendChild(document.createTextNode(items[indexOptionA]));
         buttonOptionA.dataset.indexOption = indexOptionA;
         buttonOptionA.addEventListener(
@@ -185,6 +177,8 @@ function createChoices(e) {
                 }
 
                 this.className = 'btn btn-success';
+
+                storeEverything();
             },
             false
         );
@@ -198,7 +192,12 @@ function createChoices(e) {
         let divOptionB = document.createElement('div');
         divOptionB.className = 'col-sm';
         let buttonOptionB = document.createElement('button');
-        buttonOptionB.className = 'btn btn-dark';
+
+        if (choices[key].getPickedOption() == 1)
+            buttonOptionB.className = 'btn btn-success';
+        else
+            buttonOptionB.className = 'btn btn-dark';
+
         buttonOptionB.appendChild(document.createTextNode(items[indexOptionB]));
         buttonOptionB.dataset.indexOption = indexOptionB;
         buttonOptionB.addEventListener(
@@ -217,6 +216,8 @@ function createChoices(e) {
                 }
 
                 this.className = 'btn btn-success';
+
+                storeEverything();
             },
             false
         );
@@ -229,6 +230,10 @@ function createChoices(e) {
         divOptionComment.className = 'col-sm';
         let optionComment = document.createElement('input');
         optionComment.type = 'text';
+
+        if (choices[key].getComment() != '')
+            optionComment.value = choices[key].getComment();
+
         optionComment.addEventListener(
             'blur',
             function () {
@@ -236,6 +241,7 @@ function createChoices(e) {
                 let key = this.parentElement.parentElement.id.split('_')[1];
                 choices[key].setComment(this.value);
 
+                storeEverything();
             },
             false
         );
@@ -309,6 +315,47 @@ function evaluatePrios(e) {
     }
 }
 
+function restoreEverything() {
+
+    if (isEverythingStored()) {
+        
+        items = loadItems();
+        choices = loadChoices();
+
+        addItems(items);
+        renderChoices(choices);
+    }
+
+    else
+        console.log("Storage error!");
+}
+
+function isEverythingStored() {
+
+    return (localStorage.getItem('all-items') != null && localStorage.getItem('all-choice-keys') != null);
+}
+
+function storeEverything() {
+
+    localStorage.clear();
+    console.log('Storing everything in localStorage!');
+
+    storeItems();
+    storeChoices();
+}
+
+function storeItems() {
+
+    localStorage.setItem('all-items', JSON.stringify(items));
+}
+
+function loadItems() {
+
+    let items = JSON.parse(localStorage.getItem('all-items'));
+
+    return items;
+}
+
 function storeChoices() {
 
     let allKeys = [];
@@ -323,7 +370,7 @@ function storeChoices() {
 
 function loadChoices() {
 
-    choices = [];
+    let choices = [];
 
     let allKeys = JSON.parse(localStorage.getItem('all-choice-keys'));
 
@@ -335,7 +382,46 @@ function loadChoices() {
         choice.setPickedOption(tempChoice.pickedOption);
         choices[key] = choice;
     }
+
+    return choices;
 }
+
+function init() {
+
+    // Add event listeners
+    ITEM_LIST_FORM.addEventListener('submit', function (e) {
+
+        // Hack to circumvent form default behavior (redirecting to another page)
+        e.preventDefault();
+
+        // Assumption: Lines / items are separated with new line character
+        lines = TEXT_AREA.value.split("\n");
+        addItems(lines);
+    });
+
+    CHOICES_FORM.addEventListener('submit', function (e) {
+
+        // Hack to circumvent form default behavior (redirecting to another page)
+        e.preventDefault();
+
+        resetScore();
+
+        console.log("Scoring array set to 0:");
+        console.log(scoring);
+
+        let choices = createChoices(lines);
+        renderChoices(choices);
+
+    });
+    EVAL_BUTTON.addEventListener('click', evaluatePrios);
+    RESTORE_BUTTON.addEventListener('click', restoreEverything);
+
+    //window.setInterval(storeEverything, 5000);
+
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
 
 
 

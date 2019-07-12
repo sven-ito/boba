@@ -32,7 +32,6 @@ Unordered list of ideas soon to be / already implemented:
 - code refactoring: turn methods into functions
 - code refactoring: separate GUI logic from data / business logic
 - code class modularity -> separate file
-- Data persistence (DOM Storage / Cookie / Client side) : 2
 - JIRA Plugin
 - consitency check for choices
 - add Selenium tests
@@ -49,6 +48,7 @@ Unordered list of ideas soon to be / already implemented:
 
 **DONE**:
 
+- Data persistence (DOM Storage / Cookie / Client side) : 2
 - class safety
 - versioning : 10
 - undo buttons (indirectly) : 6
