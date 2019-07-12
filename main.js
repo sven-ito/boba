@@ -403,7 +403,7 @@ function renderCombinationMatrix() {
 
     let header = document.createElement('th');
     header.scope = "col";
-    header.innerText = "#";
+    header.innerText = "VS";
     row.appendChild(header);
 
     for (let i = 0; i < items.length; i++) {
