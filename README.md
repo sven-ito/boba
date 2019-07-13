@@ -52,10 +52,10 @@ Unordered list of ideas soon to be / already implemented:
 - turn it into an JIRA Plugin : 2
 - server side coding : 0
 
-- error handling (advanced, for complex structures/objects)
+- error handling (advanced, for complex structures/objects + regexes)
 - simplify code
 - clean up code
-- get a template engine
+- get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?)
 
 **DONE**:
 
