@@ -34,25 +34,25 @@ Unordered list of ideas soon to be / already implemented:
 
 **TODO**:
 
-- mobile optimizations
-- mobile testing
-- turn it into an JIRA Plugin
-- add Selenium tests
-- error handling
-- consitency check for choices
-- allow predefined comments / prio reasons
-- allow multiple prio reasons per choice
-- code refactoring: function Java doc comments 
-- code refactoring: remove duplicate code
-- code refactoring: modularity
-- code class modularity -> separate file
-- Helpbox with advice on how to make a decision (left side, Bootstrap Affix?)
-- grey out buttons that can no yet be used
-- reduce number of buttons
-- text hint boxes should be hidden and only appear once the step can be done
-- progress bar
-- server side coding
-- introduce OOP
+- error handling : 17
+- code refactoring: remove duplicate code : 16
+- allow multiple prio reasons per choice : 15
+- allow predefined comments / prio reasons : 13
+- Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 13
+- progress bar : 13
+- grey out buttons that can no yet be used : 12
+- add Selenium tests : 10
+- code refactoring: modularity : 10
+- reduce number of buttons : 10
+- text hint boxes should be hidden and only appear once the step can be done : 10
+- code class modularity -> separate file : 9
+- code refactoring: function Java doc comments : 8
+- mobile testing : 5
+- consitency check for choices : 3
+- introduce OOP : 3
+- mobile optimizations : 2
+- turn it into an JIRA Plugin : 2
+- server side coding : 0
 
 **DONE**:
 
