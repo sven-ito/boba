@@ -38,12 +38,10 @@ Unordered list of ideas soon to be / already implemented:
 - allow predefined comments / prio reasons : 13
 - Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 13
 - progress bar : 13
-- grey out buttons that can no yet be used : 12
+- grey out buttons that can not yet be used : 12
 - add Selenium tests : 10
 - code refactoring: modularity : 10
-- reduce number of buttons : 10
 - text hint boxes should be hidden and only appear once the step can be done : 10
-- code class modularity -> separate file : 9
 - code refactoring: function Java doc comments : 8
 - mobile testing : 5
 - consitency check for choices : 3
@@ -56,9 +54,11 @@ Unordered list of ideas soon to be / already implemented:
 - simplify code
 - clean up code
 - get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?)
+- add unit test
 
 **DONE**:
 
+- reduce number of buttons : 10
 - add more usability (key support)
 - code refactoring: remove duplicate code (some) : 16
 - error handling (basic): 17

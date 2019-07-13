@@ -68,22 +68,13 @@
                         Paste a list of items (one item per line) here and click on <em>Add Items</em> below to
                         continue.
                     </div>
-                    <form id="addForm">
-                        <textarea class="form-control" cols=100 rows="10" id="prioItems"></textarea>
+                    <form id="addForm" class="text-center">
+                        <textarea class="form-control" cols=100 rows="5" id="prioItems"></textarea>
                         <hr>
-                        <input type="submit" class="btn btn-dark" value="Add Items">
                     </form>
-                    <h2 class="title">2. Identified Items</h2>
-                    <div class="alert alert-primary" role="alert">
-                        Here you can find all items that have been recognized by the tool.
-                    </div>
-                    <ul id="items" class="list-group">
-                    </ul>
+                    <button id="startButton" class="btn btn-dark">Start</button>
                     <hr>
-                    <h2>3. Choices</h2>
-                    <div class="alert alert-primary" role="alert">
-                        In order to start the priorization process click on <em>Create Choices</em> below.
-                    </div>
+                    <h2>2. Choices</h2>
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval=false
                         style="visibility: hidden">
                         <div class="carousel-inner" id="carouselContent">
@@ -99,13 +90,10 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <form id="collectForm" class="form-inline mb-3">
-                        <input type="submit" class="btn btn-dark" value="Create Choices">
-                    </form>
                     <ul id="choicesList" class="list-group">
                     </ul>
                     <hr>
-                    <h2>4. Evaluation</h2>
+                    <h2>3. Evaluation</h2>
                     <div class="alert alert-primary" role="alert">
                         Having prioritized all items, you may now review the evaluation revealing a
                         <strong>prioritized</strong> version of your initial item list by clicking on

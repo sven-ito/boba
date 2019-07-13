@@ -45,11 +45,12 @@ class Choice {
 const TEXT_AREA = document.getElementById('prioItems');
 const ITEM_LIST_FORM = document.getElementById('addForm');
 const CHOICES_FORM = document.getElementById('collectForm');
-const ITEM_LIST = document.getElementById('items');
+// const ITEM_LIST = document.getElementById('items');
 const CHOICES_LIST = document.getElementById('choicesList');
 const EVAL_LIST = document.getElementById('evaluationList');
 const EVAL_BUTTON = document.getElementById('evaluationButton');
 const RESTORE_BUTTON = document.getElementById('restoreButton');
+const START_BUTTON = document.getElementById('startButton');
 const COMBINATION_MATRIX_SPACE = document.getElementById('combinationMatrixSpace');
 const CAROUSEL_CONTENT = document.getElementById('carouselContent');
 const CAROUSEL = document.getElementById('carouselExampleControls');
@@ -86,15 +87,20 @@ function addItems(lines) {
     if (lines.length == 0)
         throw Error("lines may not be empty!");
 
-    ITEM_LIST.innerHTML = "";
+    // ITEM_LIST.innerHTML = "";
 
-    for (let line of lines) {
-        addItem(line);
-    }
+    // for (let line of lines) {
+    //     addItem(line);
+    // }
 
-    // Collect list items into an array / list
-    for (let i = 0; i < ITEM_LIST.children.length; i++) {
-        items[i] = ITEM_LIST.children[i].innerText;
+    // // Collect list items into an array / list
+    // for (let i = 0; i < ITEM_LIST.children.length; i++) {
+    //     items[i] = ITEM_LIST.children[i].innerText;
+    // }
+
+    for (let i = 0; i < lines.length; i++) {
+        items[i] = lines[i];
+        console.log(lines[i]);
     }
 
 }
@@ -677,7 +683,7 @@ function clearEverything() {
 function init() {
 
     // Add event listeners
-    ITEM_LIST_FORM.addEventListener('submit', function (e) {
+    START_BUTTON.addEventListener('click', function (e) {
 
         // Hack to circumvent form default behavior (redirecting to another page)
         e.preventDefault();
@@ -687,12 +693,6 @@ function init() {
         // Assumption: Lines / items are separated with new line character
         lines = TEXT_AREA.value.split("\n");
         addItems(lines);
-    });
-
-    CHOICES_FORM.addEventListener('submit', function (e) {
-
-        // Hack to circumvent form default behavior (redirecting to another page)
-        e.preventDefault();
 
         resetScore();
 
@@ -702,8 +702,23 @@ function init() {
         let choices = createChoices(lines);
         //renderChoices(choices);
         renderChoicesCarousel(choices);
-
     });
+
+    // CHOICES_FORM.addEventListener('submit', function (e) {
+
+    //     // Hack to circumvent form default behavior (redirecting to another page)
+    //     e.preventDefault();
+
+    //     resetScore();
+
+    //     console.log("Scoring array set to 0:");
+    //     console.log(scoring);
+
+    //     let choices = createChoices(lines);
+    //     //renderChoices(choices);
+    //     renderChoicesCarousel(choices);
+
+    // });
     EVAL_BUTTON.addEventListener('click', evaluatePrios);
     RESTORE_BUTTON.addEventListener('click', restoreEverything);
 
