@@ -40,12 +40,10 @@ Unordered list of ideas soon to be / already implemented:
 - progress bar : 13
 - grey out buttons that can not yet be used : 12
 - add Selenium tests : 10
-- code refactoring: modularity : 10
 - text hint boxes should be hidden and only appear once the step can be done : 10
 - code refactoring: function Java doc comments : 8
 - mobile testing : 5
 - consitency check for choices : 3
-- introduce OOP : 3
 - mobile optimizations : 2
 - turn it into an JIRA Plugin : 2
 - server side coding : 0
@@ -58,6 +56,8 @@ Unordered list of ideas soon to be / already implemented:
 
 **DONE**:
 
+- introduce OOP : 3
+- code refactoring: modularity (classes with static methods in one file) : 10
 - reduce number of buttons : 10
 - add more usability (key support)
 - code refactoring: remove duplicate code (some) : 16
