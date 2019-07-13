@@ -6,6 +6,8 @@ class Choice {
 
         if (typeof numberOfOptions === "number" && numberOfOptions > 0)
             this.numberOfOptions = numberOfOptions;
+        else
+            throw Error("numberOfOptions must be a number > 0!");
 
         this.pickedOption = -1;
         this.comment = "";
@@ -19,6 +21,8 @@ class Choice {
 
         if (typeof comment === "string")
             this.comment = comment;
+        else
+            throw Error("comment must be a String!");
     }
 
     getPickedOption() {
@@ -29,6 +33,8 @@ class Choice {
 
         if (typeof pickedOption === "number" && pickedOption >= 0 && pickedOption < this.numberOfOptions)
             this.pickedOption = pickedOption;
+        else
+            throw Error("pickedOption must be a number >= 0 and may not >= numberOfOptions!");
     }
 
 }
@@ -60,7 +66,10 @@ var lines = [];
  * Adds a new item to the item list.
  * @param  {} newItem
  */
-function addItem(newItem) {
+function addItem(newItem = "Empty") {
+
+    if (typeof newItem != "string")
+        throw Error("comment must be a String!");
 
     let li = document.createElement('li');
     li.className = 'list-group-item';
@@ -73,6 +82,9 @@ function addItem(newItem) {
  * Parses the lines in the text area into single items.
  */
 function addItems(lines) {
+
+    if (lines.length == 0)
+        throw Error("lines may not be empty!");
 
     ITEM_LIST.innerHTML = "";
 
@@ -99,6 +111,9 @@ function resetScore() {
  * Creates all the choices to pick for the prioritization process.
  */
 function createChoices(items) {
+
+    if (items.length == 0)
+        throw Error("items may not be empty!");
 
     choices = [];
 
@@ -131,13 +146,12 @@ function createChoices(items) {
 
 function renderChoicesCarousel(choices) {
 
+    if (typeof choices === 'undefined' || Object.keys(choices).length == 0)
+        throw Error("choices may not be empty!");
+
     CAROUSEL_CONTENT.innerHTML = '';
     let i = 1;
-    let n = 0;
-
-    for (let key in choices) {
-        n++;
-    }
+    let n = Object.keys(choices).length;
 
     for (let key in choices) {
 
@@ -301,6 +315,9 @@ function renderChoicesCarousel(choices) {
  */
 function renderChoices(choices) {
 
+    if (typeof choices === 'undefined' || Object.keys(choices).length == 0)
+        throw Error("choices may not be empty!");
+
     CHOICES_LIST.innerHTML = '';
 
     for (let key in choices) {
@@ -435,6 +452,10 @@ function renderChoices(choices) {
  * @param  {} toSort
  */
 function sortWithIndeces(toSort) {
+
+    if (toSort.length == 0)
+        throw Error("toSort may not be empty!");
+
     for (let i = 0; i < toSort.length; i++) {
         toSort[i] = [toSort[i], i];
     }
@@ -460,6 +481,9 @@ function evaluatePrios(e) {
     EVAL_LIST.innerHTML = '';
 
     // Prepare / fill scoring array
+
+    if (typeof choices === 'undefined' || Object.keys(choices).length == 0)
+        throw Error("choices may not be empty!");
 
     for (key in choices) {
 

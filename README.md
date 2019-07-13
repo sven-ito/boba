@@ -34,7 +34,6 @@ Unordered list of ideas soon to be / already implemented:
 
 **TODO**:
 
-- error handling : 17
 - code refactoring: remove duplicate code : 16
 - allow multiple prio reasons per choice : 15
 - allow predefined comments / prio reasons : 13
@@ -54,8 +53,11 @@ Unordered list of ideas soon to be / already implemented:
 - turn it into an JIRA Plugin : 2
 - server side coding : 0
 
+- error handling (advanced, for complex structures/objects)
+
 **DONE**:
 
+- error handling (basic): 17
 - separate decision boxes with counter (e.g. "7/10")
 - decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 - show combination matrix
