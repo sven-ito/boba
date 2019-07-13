@@ -31,10 +31,10 @@ class Choice {
 
     setPickedOption(pickedOption) {
 
-        if (typeof pickedOption === "number" && pickedOption >= 0 && pickedOption < this.numberOfOptions)
+        if (typeof pickedOption === "number" && pickedOption >= -1 && pickedOption < this.numberOfOptions)
             this.pickedOption = pickedOption;
         else
-            throw Error("pickedOption must be a number >= 0 and may not >= numberOfOptions!");
+            throw Error("pickedOption must be a number >= -1 and may not >= numberOfOptions!");
     }
 
 }
@@ -741,7 +741,7 @@ function init() {
 
                     break;
 
-                case 'c':
+                case 'Tab':
 
                     event.preventDefault();
                     comment.focus();
