@@ -153,7 +153,7 @@ function pickOption(key, optionIndex) {
 
     choices[key].setPickedOption(optionIndex);
 
-    thisButtonAncestorDiv = document.getElementById('choice_'+key);
+    thisButtonAncestorDiv = document.getElementById('choice_' + key);
 
     let allButtons = thisButtonAncestorDiv.getElementsByClassName('btn');
     for (let i = 0; i < allButtons.length; i++) {
@@ -161,7 +161,7 @@ function pickOption(key, optionIndex) {
         allButtons[i].className = 'btn btn-dark';
     }
 
-    thisButton = document.getElementById('choice_' + key + '_'+optionIndex);
+    thisButton = document.getElementById('choice_' + key + '_' + optionIndex);
     thisButton.className = 'btn btn-success';
 
     storeEverything();
@@ -282,6 +282,7 @@ function renderChoicesCarousel(choices) {
         optionComment.type = 'text';
         optionComment.className = 'form-control';
         optionComment.placeholder = 'Your reason ...';
+        optionComment.id = 'choice_' + key + '_c';
 
         if (choices[key].getComment() != '')
             optionComment.value = choices[key].getComment();
@@ -706,7 +707,69 @@ function init() {
     EVAL_BUTTON.addEventListener('click', evaluatePrios);
     RESTORE_BUTTON.addEventListener('click', restoreEverything);
 
-    //window.setInterval(storeEverything, 5000);
+    window.addEventListener('keydown', (event) => {
+
+        if (event.key !== undefined) {
+
+            let currentAcrouselDiv = '';
+            let buttonName = '';
+            let commentName = '';
+            let comment = '';
+
+            currentAcrouselDiv = document.getElementsByClassName('active')[0];
+            commentName = currentAcrouselDiv.id + "_c";
+            comment = document.getElementById(commentName);
+
+            switch (event.key) {
+                case 'a':
+
+                    if (document.activeElement !== comment) {
+                        buttonName = currentAcrouselDiv.id + "_0";
+                        let buttonA = document.getElementById(buttonName);
+                        buttonA.click();
+                    }
+
+                    break;
+
+                case 'b':
+
+                    if (document.activeElement !== comment) {
+                        buttonName = currentAcrouselDiv.id + "_1";
+                        let buttonB = document.getElementById(buttonName);
+                        buttonB.click();
+                    }
+
+                    break;
+
+                case 'c':
+
+                    event.preventDefault();
+                    comment.focus();
+                    break;
+
+                case 'ArrowRight':
+
+                    if (document.activeElement !== comment)
+                        document.getElementsByClassName('carousel-control-next')[0].click();
+                    break;
+
+                case 'ArrowLeft':
+
+                    if (document.activeElement !== comment)
+                        document.getElementsByClassName('carousel-control-prev')[0].click();
+                    break;
+
+                case 'Enter':
+
+                    if (document.activeElement === comment)
+                        comment.blur();
+                        document.getElementsByClassName('carousel-control-next')[0].click();
+                    break;
+
+                default: return;
+            }
+        }
+    })
 
 }
 

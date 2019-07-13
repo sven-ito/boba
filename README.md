@@ -59,6 +59,7 @@ Unordered list of ideas soon to be / already implemented:
 
 **DONE**:
 
+- add more usability (key support)
 - code refactoring: remove duplicate code (some) : 16
 - error handling (basic): 17
 - separate decision boxes with counter (e.g. "7/10")
