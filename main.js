@@ -641,6 +641,15 @@ function renderCombinationMatrix() {
     COMBINATION_MATRIX_SPACE.appendChild(table);
 }
 
+function clearEverything() {
+
+    localStorage.clear();
+
+    items = [];
+    scoring = [];
+    lines = [];
+}
+
 function init() {
 
     // Add event listeners
@@ -648,6 +657,8 @@ function init() {
 
         // Hack to circumvent form default behavior (redirecting to another page)
         e.preventDefault();
+
+        clearEverything();
 
         // Assumption: Lines / items are separated with new line character
         lines = TEXT_AREA.value.split("\n");
