@@ -34,7 +34,6 @@ Unordered list of ideas soon to be / already implemented:
 
 **TODO**:
 
-- code refactoring: remove duplicate code : 16
 - allow multiple prio reasons per choice : 15
 - allow predefined comments / prio reasons : 13
 - Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 13
@@ -54,9 +53,13 @@ Unordered list of ideas soon to be / already implemented:
 - server side coding : 0
 
 - error handling (advanced, for complex structures/objects)
+- simplify code
+- clean up code
+- get a template engine
 
 **DONE**:
 
+- code refactoring: remove duplicate code (some) : 16
 - error handling (basic): 17
 - separate decision boxes with counter (e.g. "7/10")
 - decision boxes with comment fields on why the decision was taken (advanced for storing/processing)

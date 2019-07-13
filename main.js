@@ -144,6 +144,30 @@ function createChoices(items) {
 }
 
 
+function pickOption(key, optionIndex) {
+
+    //console.log(pickedButton);
+
+    if (typeof optionIndex != "number" || optionIndex < 0)
+        throw Error("optionIndex must be an index / number >= 0!");
+
+    choices[key].setPickedOption(optionIndex);
+
+    thisButtonAncestorDiv = document.getElementById('choice_'+key);
+
+    let allButtons = thisButtonAncestorDiv.getElementsByClassName('btn');
+    for (let i = 0; i < allButtons.length; i++) {
+        //allButtons[i].disabled = true;
+        allButtons[i].className = 'btn btn-dark';
+    }
+
+    thisButton = document.getElementById('choice_' + key + '_'+optionIndex);
+    thisButton.className = 'btn btn-success';
+
+    storeEverything();
+}
+
+
 function renderChoicesCarousel(choices) {
 
     if (typeof choices === 'undefined' || Object.keys(choices).length == 0)
@@ -187,6 +211,7 @@ function renderChoicesCarousel(choices) {
         let divOptionA = document.createElement('div');
         divOptionA.className = 'col-sm text-center';
         let buttonOptionA = document.createElement('button');
+        buttonOptionA.id = 'choice_' + key + '_0';
 
         if (choices[key].getPickedOption() == 0)
             buttonOptionA.className = 'btn btn-success';
@@ -198,21 +223,8 @@ function renderChoicesCarousel(choices) {
         buttonOptionA.addEventListener(
             'click',
             function () {
-                //console.log("Option A: " + this.dataset.indexOption);
-                //scoring[this.dataset.indexOption]++;
-
                 let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
-                choices[key].setPickedOption(0);
-
-                let allButtons = this.parentElement.parentElement.parentElement.getElementsByClassName('btn');
-                for (let i = 0; i < allButtons.length; i++) {
-                    //allButtons[i].disabled = true;
-                    allButtons[i].className = 'btn btn-dark';
-                }
-
-                this.className = 'btn btn-success';
-
-                storeEverything();
+                pickOption(key, 0);
             },
             false
         );
@@ -226,6 +238,7 @@ function renderChoicesCarousel(choices) {
         let divOptionB = document.createElement('div');
         divOptionB.className = 'col-sm text-center';
         let buttonOptionB = document.createElement('button');
+        buttonOptionB.id = 'choice_' + key + '_1';
 
         if (choices[key].getPickedOption() == 1)
             buttonOptionB.className = 'btn btn-success';
@@ -237,21 +250,8 @@ function renderChoicesCarousel(choices) {
         buttonOptionB.addEventListener(
             'click',
             function () {
-                //console.log("Option B: " + this.dataset.indexOption);
-                //scoring[this.dataset.indexOption]++;
-
                 let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
-                choices[key].setPickedOption(1);
-
-                let allButtons = this.parentElement.parentElement.parentElement.getElementsByClassName('btn');
-                for (let i = 0; i < allButtons.length; i++) {
-                    //allButtons[i].disabled = true;
-                    allButtons[i].className = 'btn btn-dark';
-                }
-
-                this.className = 'btn btn-success';
-
-                storeEverything();
+                pickOption(key, 1);
             },
             false
         );
@@ -308,7 +308,6 @@ function renderChoicesCarousel(choices) {
 
     CAROUSEL.style = "visibility: visbible"
 }
-
 
 /**
  * Creates and renders all the choices to pick for the prioritization process.
