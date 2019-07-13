@@ -45,6 +45,8 @@ const EVAL_LIST = document.getElementById('evaluationList');
 const EVAL_BUTTON = document.getElementById('evaluationButton');
 const RESTORE_BUTTON = document.getElementById('restoreButton');
 const COMBINATION_MATRIX_SPACE = document.getElementById('combinationMatrixSpace');
+const CAROUSEL_CONTENT = document.getElementById('carouselContent');
+const CAROUSEL = document.getElementById('carouselExampleControls');
 
 // All data structures for (processed) inputs - as global variables
 var items = [];
@@ -124,6 +126,173 @@ function createChoices(items) {
     console.log(choices);
 
     return choices;
+}
+
+
+function renderChoicesCarousel(choices) {
+
+    CAROUSEL_CONTENT.innerHTML = '';
+    let i = 1;
+    let n = 0;
+
+    for (let key in choices) {
+        n++;
+    }
+
+    for (let key in choices) {
+
+        // Parse option item indices from key
+        let options = key.split('-');
+
+        let div = document.createElement('div');
+        div.id = 'choice_' + key;
+
+        if (i == 1)
+            div.className = 'carousel-item active jumbotron bg-dark text-center text-white';
+        else
+            div.className = 'carousel-item jumbotron bg-dark text-center text-white';
+
+        let counter = document.createElement('small');
+        counter.innerText = i + '/' + n;
+        div.appendChild(counter);
+
+        let question = document.createElement('h2');
+        question.innerHTML = 'If you could only have <em>ONE</em>:';
+        div.appendChild(question);
+
+        let separatorLine = document.createElement('hr');
+        div.appendChild(separatorLine);
+
+        let row = document.createElement('div');
+        row.className = 'row';
+
+        let indexOptionA = options[0];
+        console.log("Option A:");
+        console.log(options[0]);
+
+        let divOptionA = document.createElement('div');
+        divOptionA.className = 'col-sm text-center';
+        let buttonOptionA = document.createElement('button');
+
+        if (choices[key].getPickedOption() == 0)
+            buttonOptionA.className = 'btn btn-success';
+        else
+            buttonOptionA.className = 'btn btn-dark';
+
+        buttonOptionA.appendChild(document.createTextNode(items[indexOptionA]));
+        buttonOptionA.dataset.indexOption = indexOptionA;
+        buttonOptionA.addEventListener(
+            'click',
+            function () {
+                //console.log("Option A: " + this.dataset.indexOption);
+                //scoring[this.dataset.indexOption]++;
+
+                let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
+                choices[key].setPickedOption(0);
+
+                let allButtons = this.parentElement.parentElement.parentElement.getElementsByClassName('btn');
+                for (let i = 0; i < allButtons.length; i++) {
+                    //allButtons[i].disabled = true;
+                    allButtons[i].className = 'btn btn-dark';
+                }
+
+                this.className = 'btn btn-success';
+
+                storeEverything();
+            },
+            false
+        );
+        divOptionA.appendChild(buttonOptionA);
+        row.appendChild(divOptionA);
+
+        let indexOptionB = options[1];
+        console.log("Option B:");
+        console.log(options[1]);
+
+        let divOptionB = document.createElement('div');
+        divOptionB.className = 'col-sm text-center';
+        let buttonOptionB = document.createElement('button');
+
+        if (choices[key].getPickedOption() == 1)
+            buttonOptionB.className = 'btn btn-success';
+        else
+            buttonOptionB.className = 'btn btn-dark';
+
+        buttonOptionB.appendChild(document.createTextNode(items[indexOptionB]));
+        buttonOptionB.dataset.indexOption = indexOptionB;
+        buttonOptionB.addEventListener(
+            'click',
+            function () {
+                //console.log("Option B: " + this.dataset.indexOption);
+                //scoring[this.dataset.indexOption]++;
+
+                let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
+                choices[key].setPickedOption(1);
+
+                let allButtons = this.parentElement.parentElement.parentElement.getElementsByClassName('btn');
+                for (let i = 0; i < allButtons.length; i++) {
+                    //allButtons[i].disabled = true;
+                    allButtons[i].className = 'btn btn-dark';
+                }
+
+                this.className = 'btn btn-success';
+
+                storeEverything();
+            },
+            false
+        );
+        divOptionB.appendChild(buttonOptionB);
+        row.appendChild(divOptionB);
+
+        div.appendChild(row);
+
+        separatorLine = document.createElement('hr');
+        div.appendChild(separatorLine);
+
+        let commentDiv = document.createElement('div');
+        commentDiv.className = 'input-group w-50';
+        commentDiv.style = 'left: 180px';
+
+        let commentDivLeft = document.createElement('div');
+        commentDivLeft.className = 'input-group-prepend';
+
+        let commentDivLeftSpan = document.createElement('span');
+        commentDivLeftSpan.className = 'input-group-text';
+        commentDivLeftSpan.innerText = 'Why?';
+
+        commentDivLeft.appendChild(commentDivLeftSpan);
+
+        commentDiv.appendChild(commentDivLeft);
+
+        let optionComment = document.createElement('input');
+        optionComment.type = 'text';
+        optionComment.className = 'form-control';
+        optionComment.placeholder = 'Your reason ...';
+
+        if (choices[key].getComment() != '')
+            optionComment.value = choices[key].getComment();
+
+        optionComment.addEventListener(
+            'blur',
+            function () {
+
+                let key = this.parentElement.parentElement.id.split('_')[1];
+                choices[key].setComment(this.value);
+
+                storeEverything();
+            },
+            false
+        );
+        commentDiv.appendChild(optionComment);
+
+        div.appendChild(commentDiv);
+
+        CAROUSEL_CONTENT.appendChild(div);
+
+        i++;
+    }
+
+    CAROUSEL.style = "visibility: visbible"
 }
 
 
@@ -495,7 +664,8 @@ function init() {
         console.log(scoring);
 
         let choices = createChoices(lines);
-        renderChoices(choices);
+        //renderChoices(choices);
+        renderChoicesCarousel(choices);
 
     });
     EVAL_BUTTON.addEventListener('click', evaluatePrios);

@@ -44,11 +44,11 @@ Unordered list of ideas soon to be / already implemented:
 - allow multiple prio reasons per choice
 - code refactoring: function Java doc comments 
 - code refactoring: remove duplicate code
+- code refactoring: modularity
 - code class modularity -> separate file
 - Helpbox with advice on how to make a decision (left side, Bootstrap Affix?)
 - grey out buttons that can no yet be used
 - reduce number of buttons
-- separate decision boxes with counter (e.g. "7/10")
 - text hint boxes should be hidden and only appear once the step can be done
 - progress bar
 - server side coding
@@ -56,6 +56,7 @@ Unordered list of ideas soon to be / already implemented:
 
 **DONE**:
 
+- separate decision boxes with counter (e.g. "7/10")
 - decision boxes with comment fields on why the decision was taken (advanced for storing/processing)
 - show combination matrix
 - code refactoring: turn methods into functions
