@@ -495,7 +495,8 @@ function restoreEverything() {
         choices = loadChoices();
 
         addItems(items);
-        renderChoices(choices);
+        //renderChoices(choices);
+        renderChoicesCarousel(choices);
     }
 
     else
