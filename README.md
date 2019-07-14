@@ -10,6 +10,11 @@ This tool is supposed to guide you through the *difficult* process of **prioriti
 It was created as client-side-only JavaScript web app in a **very** "MVP-Agile-hacky" #DesktopFirst way.
 However, the tool does what it is supposed to be doing, for now :-)
 
+Demo
+----
+
+Try it in your browser on [GitHub Pages](https://sven-ito.github.io/boba/).
+
 Why Boba?
 ---------
 
