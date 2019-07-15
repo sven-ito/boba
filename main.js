@@ -74,6 +74,7 @@ class Storage {
     static items = [];
     static scoring = [];
     static lines = [];
+    static quickMode = false;
 
     static clearEverything() {
 
@@ -258,6 +259,9 @@ class UI {
                 function () {
                     let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
                     UI.pickOption(key, 0);
+
+                    if (Storage.quickMode)
+                            document.getElementsByClassName('carousel-control-next')[0].click();
                 },
                 false
             );
@@ -285,6 +289,9 @@ class UI {
                 function () {
                     let key = this.parentElement.parentElement.parentElement.id.split('_')[1];
                     UI.pickOption(key, 1);
+
+                    if (Storage.quickMode)
+                            document.getElementsByClassName('carousel-control-next')[0].click();
                 },
                 false
             );
@@ -600,6 +607,8 @@ const START_BUTTON = document.getElementById('startButton');
 const COMBINATION_MATRIX_SPACE = document.getElementById('combinationMatrixSpace');
 const CAROUSEL_CONTENT = document.getElementById('carouselContent');
 const CAROUSEL = document.getElementById('carouselExampleControls');
+const QUICK_MODE = document.getElementById('quickMode');
+const QUICK_MODE_LABEL = document.getElementById('quickModeLabel');
 
 /**
  * Creates all the choices to pick for the prioritization process.
@@ -704,6 +713,10 @@ function init() {
         Storage.restoreEverything();
         UI.addItems(Storage.items);
         UI.renderChoicesCarousel(Storage.choices);
+    });
+
+    QUICK_MODE.addEventListener('click', (event) => {
+        Storage.quickMode = QUICK_MODE.checked;
     });
 
     window.addEventListener('keydown', (event) => {
