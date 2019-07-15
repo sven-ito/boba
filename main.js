@@ -67,6 +67,12 @@ class Utils {
         return toSort;
     }
 
+    static factorial_iterative(n) {
+        var rval = 1;
+        for (var i = 2; i <= n; i++)
+            rval = rval * i;
+        return rval;
+    }
 }
 
 class Storage {
@@ -184,22 +190,38 @@ class UI {
         if (lines.length == 0)
             throw Error("lines may not be empty!");
 
-        // ITEM_LIST.innerHTML = "";
+        // Calculate number of comparisons:
+        let n = lines.length;
+        let k = 2;
+        let n_over_k = Utils.factorial_iterative(n) / (Utils.factorial_iterative(k) * Utils.factorial_iterative(n - k));
 
-        // for (let line of lines) {
-        //     addItem(line);
-        // }
 
-        // // Collect list items into an array / list
-        // for (let i = 0; i < ITEM_LIST.children.length; i++) {
-        //     items[i] = ITEM_LIST.children[i].innerText;
-        // }
+        if (n_over_k >= 1000) {
+
+            let alert = document.createElement("div");
+            
+            alert.className = "alert alert-danger";
+            alert.role = "alert";
+            alert.innerText = "You will have to make "+n_over_k+" choices. Aborting!";
+            document.getElementById("addForm").appendChild(alert);
+
+            throw Error("Too many comparisons!");
+        }
+
+        if (n_over_k > 100) {
+
+            let alert = document.createElement("div");
+            
+            alert.className = "alert alert-warning";
+            alert.role = "alert";
+            alert.innerText = "You will have to make "+n_over_k+" choices. Consider using a smaller sub-list of your items."
+            document.getElementById("addForm").appendChild(alert);
+        }
 
         for (let i = 0; i < lines.length; i++) {
             Storage.items[i] = lines[i];
             console.log(lines[i]);
         }
-
     }
 
     static renderChoicesCarousel(choices) {
@@ -261,7 +283,7 @@ class UI {
                     UI.pickOption(key, 0);
 
                     if (Storage.quickMode)
-                            document.getElementsByClassName('carousel-control-next')[0].click();
+                        document.getElementsByClassName('carousel-control-next')[0].click();
                 },
                 false
             );
@@ -291,7 +313,7 @@ class UI {
                     UI.pickOption(key, 1);
 
                     if (Storage.quickMode)
-                            document.getElementsByClassName('carousel-control-next')[0].click();
+                        document.getElementsByClassName('carousel-control-next')[0].click();
                 },
                 false
             );
