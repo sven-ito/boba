@@ -194,10 +194,10 @@ class UI {
         if (n_over_k >= 1000) {
 
             let alert = document.createElement("div");
-            
+
             alert.className = "alert alert-danger";
             alert.role = "alert";
-            alert.innerText = "You will have to make "+n_over_k+" choices. Aborting!";
+            alert.innerText = "You will have to make " + n_over_k + " choices. Aborting!";
             document.getElementById("addForm").appendChild(alert);
 
             throw Error("Too many comparisons!");
@@ -206,10 +206,10 @@ class UI {
         if (n_over_k > 100) {
 
             let alert = document.createElement("div");
-            
+
             alert.className = "alert alert-warning";
             alert.role = "alert";
-            alert.innerText = "You will have to make "+n_over_k+" choices. Consider using a smaller sub-list of your items."
+            alert.innerText = "You will have to make " + n_over_k + " choices. Consider using a smaller sub-list of your items."
             document.getElementById("addForm").appendChild(alert);
         }
 
@@ -740,14 +740,15 @@ function init() {
 
     window.addEventListener('keydown', (event) => {
 
-        if (event.key !== undefined) {
+        let currentAcrouselDiv = document.getElementsByClassName('active')[0];
+
+        if (event.key !== undefined && currentAcrouselDiv !== undefined) {
 
             let currentAcrouselDiv = '';
             let buttonName = '';
             let commentName = '';
             let comment = '';
 
-            currentAcrouselDiv = document.getElementsByClassName('active')[0];
             commentName = currentAcrouselDiv.id + "_c";
             comment = document.getElementById(commentName);
 
