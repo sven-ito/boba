@@ -744,7 +744,6 @@ function init() {
 
         if (event.key !== undefined && currentAcrouselDiv !== undefined) {
 
-            let currentAcrouselDiv = '';
             let buttonName = '';
             let commentName = '';
             let comment = '';
