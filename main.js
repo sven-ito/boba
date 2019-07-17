@@ -77,11 +77,6 @@ class Utils {
 
 class Storage {
 
-    static items = [];
-    static scoring = [];
-    static lines = [];
-    static quickMode = false;
-
     static clearEverything() {
 
         localStorage.clear();
@@ -707,6 +702,8 @@ function evaluatePrios(e) {
 }
 
 function init() {
+
+    Storage.quickMode = false;
 
     // Add event listeners
     START_BUTTON.addEventListener('click', function (e) {
