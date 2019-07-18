@@ -88,6 +88,9 @@ class Storage {
 
     static resetScore() {
 
+        if (Storage.scoring === undefined)
+            Storage.scoring = [];
+
         for (let i = 0; i < Storage.items.length; i++) {
             Storage.scoring[i] = 0;
         }
