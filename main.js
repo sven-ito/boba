@@ -230,13 +230,13 @@ class UI {
         CAROUSEL_CONTENT.innerHTML = '';
         let i = 1;
         let n = Object.keys(choices).length;
-
         for (let key in choices) {
 
             // Parse option item indices from key
             let options = key.split('-');
 
             let div = document.createElement('div');
+
             div.id = 'choice_' + key;
 
             if (i == 1)
@@ -244,36 +244,58 @@ class UI {
             else
                 div.className = 'carousel-item jumbotron bg-dark text-center text-white';
 
-            let counter = document.createElement('small');
-            counter.innerText = i + '/' + n;
-            div.appendChild(counter);
-
-            let question = document.createElement('h2');
-            question.innerHTML = 'If you could only have <em>ONE</em>:';
-            div.appendChild(question);
-
-            let separatorLine = document.createElement('hr');
-            div.appendChild(separatorLine);
-
-            let row = document.createElement('div');
-            row.className = 'row';
+            let buttonOptionAId = 'choice_' + key + '_0';
+            let buttonOptionBId = 'choice_' + key + '_1';
+            let optionCommentId = 'choice_' + key + '_c';
 
             let indexOptionA = options[0];
+            let indexOptionB = options[1];
+
             console.log("Option A:");
             console.log(options[0]);
 
-            let divOptionA = document.createElement('div');
-            divOptionA.className = 'col-sm text-center';
-            let buttonOptionA = document.createElement('button');
-            buttonOptionA.id = 'choice_' + key + '_0';
+            console.log("Option B:");
+            console.log(options[1]);
+
+            let buttonOptionAClassName;
 
             if (choices[key].getPickedOption() == 0)
-                buttonOptionA.className = 'btn btn-success';
+                buttonOptionAClassName = 'btn btn-success';
             else
-                buttonOptionA.className = 'btn btn-dark';
+                buttonOptionAClassName = 'btn btn-dark';
 
-            buttonOptionA.appendChild(document.createTextNode(Storage.items[indexOptionA]));
-            buttonOptionA.dataset.indexOption = indexOptionA;
+            let buttonOptionBClassName;
+
+            if (choices[key].getPickedOption() == 1)
+                buttonOptionBClassName = 'btn btn-success';
+            else
+                buttonOptionBClassName = 'btn btn-dark';
+
+            let optionCommentValue = '';
+
+            if (choices[key].getComment() != '')
+                optionCommentValue = choices[key].getComment();
+
+            let divInnerHTML = `
+            <small>${i + '/' + n}</small>
+            <h2>If you could only have <em>ONE</em>:</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm text-center"><button id="${buttonOptionAId}" class="${buttonOptionAClassName}"
+                        data-index-option="${indexOptionA}">${Storage.items[indexOptionA]}</button></div>
+                <div class="col-sm text-center"><button id="${buttonOptionBId}" class="${buttonOptionBClassName}"
+                        data-index-option="${indexOptionB}">${Storage.items[indexOptionB]}</button></div>
+            </div>
+            <hr>
+            <div class="input-group w-50" style="left: 180px;">
+                <div class="input-group-prepend"><span class="input-group-text">Why?</span></div><input type="text"
+                    class="form-control" placeholder="Your reason ..." id="${optionCommentId}" value="${optionCommentValue}">
+            </div>
+            `;
+
+            div.innerHTML = divInnerHTML;
+
+            let buttonOptionA = div.querySelector("#"+buttonOptionAId); 
             buttonOptionA.addEventListener(
                 'click',
                 function () {
@@ -285,25 +307,8 @@ class UI {
                 },
                 false
             );
-            divOptionA.appendChild(buttonOptionA);
-            row.appendChild(divOptionA);
 
-            let indexOptionB = options[1];
-            console.log("Option B:");
-            console.log(options[1]);
-
-            let divOptionB = document.createElement('div');
-            divOptionB.className = 'col-sm text-center';
-            let buttonOptionB = document.createElement('button');
-            buttonOptionB.id = 'choice_' + key + '_1';
-
-            if (choices[key].getPickedOption() == 1)
-                buttonOptionB.className = 'btn btn-success';
-            else
-                buttonOptionB.className = 'btn btn-dark';
-
-            buttonOptionB.appendChild(document.createTextNode(Storage.items[indexOptionB]));
-            buttonOptionB.dataset.indexOption = indexOptionB;
+            let buttonOptionB = div.querySelector("#"+buttonOptionBId); 
             buttonOptionB.addEventListener(
                 'click',
                 function () {
@@ -315,38 +320,8 @@ class UI {
                 },
                 false
             );
-            divOptionB.appendChild(buttonOptionB);
-            row.appendChild(divOptionB);
 
-            div.appendChild(row);
-
-            separatorLine = document.createElement('hr');
-            div.appendChild(separatorLine);
-
-            let commentDiv = document.createElement('div');
-            commentDiv.className = 'input-group w-50';
-            commentDiv.style = 'left: 180px';
-
-            let commentDivLeft = document.createElement('div');
-            commentDivLeft.className = 'input-group-prepend';
-
-            let commentDivLeftSpan = document.createElement('span');
-            commentDivLeftSpan.className = 'input-group-text';
-            commentDivLeftSpan.innerText = 'Why?';
-
-            commentDivLeft.appendChild(commentDivLeftSpan);
-
-            commentDiv.appendChild(commentDivLeft);
-
-            let optionComment = document.createElement('input');
-            optionComment.type = 'text';
-            optionComment.className = 'form-control';
-            optionComment.placeholder = 'Your reason ...';
-            optionComment.id = 'choice_' + key + '_c';
-
-            if (choices[key].getComment() != '')
-                optionComment.value = choices[key].getComment();
-
+            let optionComment = div.querySelector("#"+optionCommentId); 
             optionComment.addEventListener(
                 'blur',
                 function () {
@@ -358,9 +333,6 @@ class UI {
                 },
                 false
             );
-            commentDiv.appendChild(optionComment);
-
-            div.appendChild(commentDiv);
 
             CAROUSEL_CONTENT.appendChild(div);
 
@@ -808,8 +780,3 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
-
-
-

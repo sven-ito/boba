@@ -39,6 +39,7 @@ Unordered list of ideas soon to be / already implemented:
 
 **TODO**:
 
+- get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?) - part 2
 - allow multiple prio reasons per choice : 15
 - allow predefined comments / prio reasons : 13
 - Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 13
@@ -56,11 +57,11 @@ Unordered list of ideas soon to be / already implemented:
 - error handling (advanced, for complex structures/objects + regexes)
 - simplify code
 - clean up code
-- get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?)
 - add unit test
 
 **DONE**:
 
+- get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?) - part 1
 - introduce OOP : 3
 - code refactoring: modularity (classes with static methods in one file) : 10
 - reduce number of buttons : 10
