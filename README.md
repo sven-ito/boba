@@ -58,6 +58,7 @@ Unordered list of ideas soon to be / already implemented:
 - clean up code
 - add unit test
 - auto evaluate after last choice/input
+- add options menu with overlay
 
 **DONE**:
 
