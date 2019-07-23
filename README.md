@@ -43,7 +43,6 @@ Unordered list of ideas soon to be / already implemented:
 - allow multiple prio reasons per choice : 15
 - allow predefined comments / prio reasons : 13
 - Helpbox with advice on how to make a decision (left side, Bootstrap Affix?) : 13
-- progress bar : 13
 - grey out buttons that can not yet be used : 12
 - add Selenium tests : 10
 - text hint boxes should be hidden and only appear once the step can be done : 10
@@ -61,6 +60,7 @@ Unordered list of ideas soon to be / already implemented:
 
 **DONE**:
 
+- progress bar : 13
 - get a template engine (reduce HTML markup in JS code; existing hidden HTML code -> cloned?) - part 1
 - introduce OOP : 3
 - code refactoring: modularity (classes with static methods in one file) : 10

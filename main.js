@@ -276,8 +276,19 @@ class UI {
             if (choices[key].getComment() != '')
                 optionCommentValue = choices[key].getComment();
 
+            let progressPercentage = Math.floor((i/n)*100);
+
             let divInnerHTML = `
-            <small>${i + '/' + n}</small>
+            <small>Progress:</small>
+
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: ${progressPercentage}%" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100">
+                ${i + '/' + n}
+                </div>
+            </div>
+
+            <hr>
+
             <h2>If you could only have <em>ONE</em>:</h2>
             <hr>
             <div class="row">
