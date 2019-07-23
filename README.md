@@ -57,6 +57,7 @@ Unordered list of ideas soon to be / already implemented:
 - simplify code
 - clean up code
 - add unit test
+- auto evaluate after last choice/input
 
 **DONE**:
 
